@@ -1,27 +1,15 @@
 <?php
-$projects = new WP_Query([
-    'post_type' => 'projects',
-    'posts_per_page' => 10,
-]);
-if ($projects->have_posts()) {
-    ?>
-    <!-- Loop -->
-    <?php
-        while ($projects->have_posts()) {
-            $projects->the_post();
-            ?>
 
-          
+ // The Query
+ query_posts( array ( 'post_type' => 'projects', 'posts_per_page' => -1 ) );
 
-        <!-- Foreach include template part -->
+ // The Loop
+while ( have_posts() ) : the_post(); ?>
         <?php get_template_part('loop-templates/loop-project'); ?>
 
+ <?php endwhile;
 
-    <?php
-        }
-        // DON'T FORGET TO RESET POSTDATA!
-        wp_reset_postdata();
-        ?>
-<?php
-}
+ // Reset Query
+ wp_reset_query();
 
+ ?>

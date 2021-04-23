@@ -1,25 +1,15 @@
-
 <?php
- 
-// The Query
-$bloggs = new WP_Query( array( 'category__in' => 1 ) );
- 
-// The Loop
-if ( $bloggs->have_posts() ) {
-    echo '';
-    while ( $bloggs->have_posts() ) {
-        $bloggs->the_post();
-        ?>
 
-        <!-- Foreach include template part -->
+ // The Query
+ query_posts( array ( 'category_name' => 'bloggs', 'posts_per_page' => -1 ) );
+
+ // The Loop
+while ( have_posts() ) : the_post(); ?>
         <?php get_template_part('loop-templates/loop-blogg'); ?>
 
+ <?php endwhile;
 
-    <?php
-        }
-        // DON'T FORGET TO RESET POSTDATA!
-        wp_reset_postdata();
-        ?>
-<?php
-}
+ // Reset Query
+ wp_reset_query();
 
+ ?>
