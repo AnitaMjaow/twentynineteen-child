@@ -17,7 +17,6 @@
 		<?php get_template_part( 'template-parts/header/entry', 'header' ); ?>
 	</header>
 	<?php endif; ?>
-
 	<div class="entry-content mt-5 mb-5">
 		<?php
 		the_content();
